@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CommentDetail from './CommentDetails';
-import Card from './Card';
+
 
 const App = () => {
+  const pos = window.navigator.geolocation.getCurrentPosition((pos) => console.log(pos), (err) => console.log(err));
   return (
     <div className="ui container comments">
-      <Card>
-        <CommentDetail authorName="Malti" comment="Nice" />
-      </Card>
-      <CommentDetail authorName="Rahul" comment="very nice" />
-      <CommentDetail authorName="Whosoever" comment="awesomly nice" />
+      hiii
+      {pos}    
     </div>
   );
 };
