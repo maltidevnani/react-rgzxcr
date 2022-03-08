@@ -1,15 +1,20 @@
 import React from 'react';
 
 export default class LatComponent extends React.Component {
-  state = { lat: 40 };
+  state = { lat: null, errorMsg: '' };
 
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       (pos) => this.setState({ lat: pos.coords.latitude }),
-      (err) => console.log(err)
+      (err) => this.setState({ errorMsg: err.errorMsg })
     );
   }
   render() {
-    return <div>latitude : {this.state.lat}</div>;
+    if (this.state.errorMsg) {
+      return <div>eror : {this.state.errorMsg}</div>;
+    } else if (this.state.lat) {
+      return <div>latitude : {this.state.lat}</div>;
+    }
+    return <div>loading</div>;
   }
 }
