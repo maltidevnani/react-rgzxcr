@@ -1,15 +1,15 @@
 import React from 'react';
 
 export default class LatComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { lat: 40 };
-  }
-  render() {
+  state = { lat: 40 };
+
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
-      (pos) => console.log(pos),
+      (pos) => this.setState({ lat: pos.coords.latitude }),
       (err) => console.log(err)
     );
+  }
+  render() {
     return <div>latitude : {this.state.lat}</div>;
   }
 }
